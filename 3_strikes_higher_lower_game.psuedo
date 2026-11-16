@@ -1,0 +1,39 @@
+START
+
+DISPLAY "Welcome to the 3-Strikes Higher/Lower Game, Bella!"
+PROMPT "Enter the lower bound: " -> lower_bound
+PROMPT "Enter the upper bound: " -> upper_bound
+
+WHILE lower_bound >= upper_bound
+    DISPLAY "The lower bound must be less than the upper bound."
+    PROMPT "Enter the lower bound: " -> lower_bound
+    PROMPT "Enter the upper bound: " -> upper_bound
+END WHILE
+
+SET secret_number = RANDOM_INTEGER(lower_bound, upper_bound)
+SET strikes = 0
+SET max_strikes = 3
+SET won = FALSE
+
+WHILE strikes < max_strikes AND NOT won
+    PROMPT "Guess a number between " + lower_bound + " and " + upper_bound + ": " -> guess
+    
+    IF guess == secret_number THEN
+        SET won = TRUE
+    ELSE
+        SET strikes = strikes + 1
+        IF guess < secret_number THEN
+            DISPLAY "Strike " + strikes + "! Nope, too low."
+        ELSE
+            DISPLAY "Strike " + strikes + "! Nope, too high."
+        END IF
+    END IF
+END WHILE
+
+IF won THEN
+    DISPLAY "You got it!"
+ELSE
+    DISPLAY "Strike 3 — you're out! The number was " + secret_number + "."
+END IF
+
+END
