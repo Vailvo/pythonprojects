@@ -1,0 +1,21 @@
+// Program: Weekly Paycheck Calculator
+// Purpose: Calculates an employee's weekly pay based on regular ($20/hr) and overtime ($30/hr) hours.
+
+START
+    // Prompt user for total hours worked
+    OUTPUT "Enter total hours worked this week: "
+    INPUT hours_worked
+
+    // Check if employee worked overtime (above 40 hours)
+    IF hours_worked > 40 THEN
+        LET regular_pay = 40 * 20
+        LET overtime_hours = hours_worked - 40
+        LET overtime_pay = overtime_hours * 30
+        LET total_pay = regular_pay + overtime_pay
+    ELSE
+        LET total_pay = hours_worked * 20
+    ENDIF
+
+    // Display final paycheck amount
+    OUTPUT "Total weekly paycheck: $" + total_pay
+END

@@ -1,0 +1,31 @@
+START
+
+// 1. Setup & Bounds Validation
+DISPLAY "Welcome to the higher/lower game, Bella!"
+PROMPT "Enter the lower bound: " -> lower_bound
+PROMPT "Enter the upper bound: " -> upper_bound
+
+WHILE lower_bound >= upper_bound
+    DISPLAY "The lower bound must be less than the upper bound."
+    PROMPT "Enter the lower bound: " -> lower_bound
+    PROMPT "Enter the upper bound: " -> upper_bound
+END WHILE
+
+// 2. Generate Secret Number & First Guess
+SET secret_number = RANDOM_INTEGER(lower_bound, upper_bound)
+PROMPT "Great, now guess a number between " + lower_bound + " and " + upper_bound + ": " -> guess
+
+// 3. Main Guessing Loop
+WHILE guess != secret_number
+    IF guess < secret_number THEN
+        DISPLAY "Nope, too low."
+    ELSE
+        DISPLAY "Nope, too high."
+    END IF
+    
+    PROMPT "Guess another number: " -> guess
+END WHILE
+
+DISPLAY "You got it!"
+
+END
